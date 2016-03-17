@@ -28,7 +28,7 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _tango = require('tango');
+var _tango = require('@tvevt/tango');
 
 var _immutable = require('immutable');
 

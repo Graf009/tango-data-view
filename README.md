@@ -5,7 +5,7 @@ Simple component for managing asynchronous data dependency states. If you have a
 ## Install
 
 ```
-npm install tango-data-view --save
+npm install @tvevt/tango-data-view --save
 ```
 
 ## API
@@ -37,8 +37,8 @@ You can define three functions:
 
 ```js
 import React from 'react'
-import { PropTypes, connect } from 'tango'
-import DataComponent from 'tango-data-view'
+import { PropTypes, connect } from '@tvevt/tango'
+import DataComponent from '@tvevt/tango-data-view'
 import actions from 'core/actions'
 
 @connect({

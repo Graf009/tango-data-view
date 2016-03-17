@@ -1,5 +1,5 @@
 {
-  "name": "tango-data-view",
+  "name": "@tvevt/tango-data-view",
   "version": "1.0.0",
   "description": "Lightweight data view abstraction for managing fetching/loaded/errored states for remote data",
   "main": "dist/index.js",
@@ -15,7 +15,11 @@
     "clean": "rimraf dist",
     "lint": "eslint src"
   },
+  "peerDependencies": {
+    "@tvevt/tango": "^1.0.1"
+  },
   "devDependencies": {
+    "@tvevt/tango": "^1.0.1",
     "babel-cli": "^6.6.5",
     "babel-eslint": "^6.0.0-beta.6",
     "babel-plugin-add-module-exports": "^0.1.2",
@@ -25,8 +29,7 @@
     "eslint": "^2.4.0",
     "eslint-config-rackt": "^1.1.1",
     "react": "^0.14.7",
-    "rimraf": "^2.5.2",
-    "tango": "^1.0.1"
+    "rimraf": "^2.5.2"
   },
   "dependencies": {
     "babel-runtime": "^6.6.1",

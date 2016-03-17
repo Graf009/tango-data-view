@@ -1,4 +1,4 @@
-import { Component } from 'tango'
+import { Component } from '@tvevt/tango'
 import { fromJS, Iterable, List, Map } from 'immutable'
 
 export default class DataComponent extends Component {
