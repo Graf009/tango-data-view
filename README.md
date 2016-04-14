@@ -1,12 +1,17 @@
-# tango-data-view
+# @eagle/tango-data-view
 
-Simple component for managing asynchronous data dependency states. If you have a view with 3 base states: fetching, loaded, and errored - this will help you clean up a lot of boilerplate. Works out of the box with `rumba` for doing API stuff.
+Simple component for managing asynchronous data dependency states. If you have a view with 3 base states: fetching, loaded, and errored - this will help you clean up a lot of boilerplate.
+Works out of the box with `@eagle/rumba` for doing API stuff.
 
 ## Install
 
+```js
+npm install --save @eagle/tango-data-view
 ```
-npm install @tvevt/tango-data-view --save
-```
+
+## Repository
+
+https://github.com/Graf009/tango-data-view.git
 
 ## API
 
@@ -37,8 +42,8 @@ You can define three functions:
 
 ```js
 import React from 'react'
-import { PropTypes, connect } from '@tvevt/tango'
-import DataComponent from '@tvevt/tango-data-view'
+import { PropTypes, connect } from '@eagle/tango'
+import DataComponent from '@eagle/tango-data-view'
 import actions from 'core/actions'
 
 @connect({
