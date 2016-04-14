@@ -28,7 +28,7 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _tango = require('@tvevt/tango');
+var _tango = require('@eagle/tango');
 
 var _immutable = require('immutable');
 
@@ -38,9 +38,15 @@ var DataComponent = function (_Component) {
   (0, _inherits3.default)(DataComponent, _Component);
 
   function DataComponent() {
+    var _Object$getPrototypeO;
+
     (0, _classCallCheck3.default)(this, DataComponent);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DataComponent).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(DataComponent)).call.apply(_Object$getPrototypeO, [this].concat(args)));
 
     if (!_this.constructor.storeProps) {
       throw new Error('DataComponent requires storeProps to be defined! Did you forget to use the connect decorator?');
@@ -49,24 +55,20 @@ var DataComponent = function (_Component) {
   }
 
   (0, _createClass3.default)(DataComponent, [{
-    key: 'isPropResolving',
-    value: function isPropResolving(prop) {
-      return this.props[prop] == null || _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('pending') === true;
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.tryResolveData();
     }
   }, {
-    key: 'isPropErrored',
-    value: function isPropErrored(prop) {
-      return _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('error') != null;
-    }
-  }, {
-    key: 'isResolving',
-    value: function isResolving() {
-      return !this.isErrored() && !this.getResolvingFields().isEmpty();
-    }
-  }, {
-    key: 'isErrored',
-    value: function isErrored() {
-      return !this.getErrors().isEmpty();
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (!this.handleResolved) return;
+      if (this._resolved) return;
+      var loading = this.getResolvingFields();
+      if (loading.size !== 0) return;
+
+      this._resolved = true;
+      this.handleResolved(this.getResolvedData());
     }
   }, {
     key: 'getResolvingFields',
@@ -102,6 +104,34 @@ var DataComponent = function (_Component) {
       }, {});
     }
   }, {
+    key: 'tryResolveData',
+    value: function tryResolveData() {
+      if (!this.resolveData) return;
+      var loading = this.getResolvingFields();
+      if (loading.size === 0) return;
+      this.resolveData();
+    }
+  }, {
+    key: 'isPropResolving',
+    value: function isPropResolving(prop) {
+      return this.props[prop] === null || _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('pending') === true;
+    }
+  }, {
+    key: 'isPropErrored',
+    value: function isPropErrored(prop) {
+      return _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('error') !== null;
+    }
+  }, {
+    key: 'isResolving',
+    value: function isResolving() {
+      return !this.isErrored() && !this.getResolvingFields().isEmpty();
+    }
+  }, {
+    key: 'isErrored',
+    value: function isErrored() {
+      return !this.getErrors().isEmpty();
+    }
+  }, {
     key: 'renderLoader',
     value: function renderLoader() {
       return null;
@@ -117,33 +147,19 @@ var DataComponent = function (_Component) {
       return null;
     }
   }, {
-    key: 'tryResolveData',
-    value: function tryResolveData() {
-      if (!this.resolveData) return;
-      var loading = this.getResolvingFields();
-      if (loading.size === 0) return;
-      this.resolveData();
-    }
-  }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      this.tryResolveData();
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      if (!this.handleResolved) return;
-      if (this._resolved) return;
-      var loading = this.getResolvingFields();
-      if (loading.size !== 0) return;
-
-      this._resolved = true;
-      this.handleResolved(this.getResolvedData());
-    }
-  }, {
     key: 'render',
     value: function render() {
-      return this.isResolving() ? this.renderLoader(this.getResolvingFields()) : this.isErrored() ? this.renderErrors(this.getErrors()) : this.renderData(this.getResolvedData());
+      var node = null;
+
+      if (this.isResolving()) {
+        node = this.renderLoader(this.getResolvingFields());
+      } else if (this.isErrored()) {
+        node = this.renderErrors(this.getErrors());
+      } else {
+        node = this.renderData(this.getResolvedData());
+      }
+
+      return node;
     }
   }]);
   return DataComponent;
