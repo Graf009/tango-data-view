@@ -114,12 +114,12 @@ var DataComponent = function (_Component) {
   }, {
     key: 'isPropResolving',
     value: function isPropResolving(prop) {
-      return this.props[prop] === null || _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('pending') === true;
+      return this.props[prop] == null || _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('pending') === true;
     }
   }, {
     key: 'isPropErrored',
     value: function isPropErrored(prop) {
-      return _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('error') !== null;
+      return _immutable.Iterable.isIterable(this.props[prop]) && this.props[prop].get('error') != null;
     }
   }, {
     key: 'isResolving',
