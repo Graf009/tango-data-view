@@ -21,7 +21,7 @@
     "@eagle/tango": "^1.0.5"
   },
   "devDependencies": {
-    "@eagle/eslint-config-eagle": "1.0.1",
+    "@eagle/eslint-config-eagle": "1.0.4",
     "@eagle/tango": "1.0.5",
     "babel-cli": "6.7.5",
     "babel-eslint": "6.0.2",

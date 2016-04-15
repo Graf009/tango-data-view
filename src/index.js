@@ -54,12 +54,12 @@ export default class DataComponent extends Component {
   }
 
   isPropResolving(prop) {
-    return this.props[prop] === null ||
+    return this.props[prop] == null ||
       (Iterable.isIterable(this.props[prop]) &&
       this.props[prop].get('pending') === true)
   }
   isPropErrored(prop) {
-    return Iterable.isIterable(this.props[prop]) && this.props[prop].get('error') !== null
+    return Iterable.isIterable(this.props[prop]) && this.props[prop].get('error') != null
   }
   isResolving() {
     return !this.isErrored() && !this.getResolvingFields().isEmpty()
