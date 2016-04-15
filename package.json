@@ -1,6 +1,6 @@
 {
   "name": "@eagle/tango-data-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight data view abstraction for managing fetching/loaded/errored states for remote data",
   "main": "dist/index.js",
   "repository": {
