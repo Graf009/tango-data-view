@@ -68,12 +68,15 @@ export default class DataComponent extends Component {
     return !this.getErrors().isEmpty()
   }
 
+  // eslint-disable-next-line class-methods-use-this
   renderLoader() {
     return null
   }
+  // eslint-disable-next-line class-methods-use-this
   renderErrors() {
     return null
   }
+  // eslint-disable-next-line class-methods-use-this
   renderData() {
     return null
   }
